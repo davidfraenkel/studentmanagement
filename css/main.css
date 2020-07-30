@@ -1,0 +1,134 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+html {
+  font-size: 62.5%; /* Now 10px = 1rem! */
+}
+body {
+  font-size: 16px; /* px fallback */
+  font-size: 1.6rem; /* default font-size for document */
+  line-height: 1.5; /* a nice line-height */
+  width: 100%;
+  font-family: var(--font-text);
+}
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+h1 {
+  font-size: 3.6rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+  border: 0.1rem solid transparent;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.4rem;
+  border-radius: 0.4rem;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+
+.btn-green {
+  background-color: #28a745 !important;
+}
+
+.btn-blue {
+  background-color: #17a2b8 !important;
+}
+
+.btn-red {
+  background-color: #dc3545 !important;
+}
+
+.navbar {
+  background-color: #f8f8f8;
+  border-color: #e7e7e7;
+  display: flex;
+  padding: 1.2rem;
+}
+
+.navbar a {
+  color: #333;
+  font-size: 2rem;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.navbar-nav {
+  margin-left: 3rem;
+}
+
+ul {
+  width: 100%;
+  display: block;
+}
+
+ul li {
+  display: inline;
+  margin: 1rem;
+}
+
+/*  MAIN   */
+
+.main-container {
+  width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Students */
+
+#allStudentsContainer {
+  display: grid;
+  grid-template-columns: 50fr 50fr;
+  grid-gap: 2.5rem;
+  margin: 2rem auto;
+  max-width: 1140px;
+}
+
+.studentInformation {
+  filter: drop-shadow(0 0.4rem 1rem rgba(0, 0, 0, 0.1));
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+[data-name],
+[data-id],
+[data-email],
+[data-courses],
+[data-cpr] {
+  font-size: 2rem;
+  margin: 0;
+}

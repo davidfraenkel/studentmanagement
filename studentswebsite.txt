@@ -1,0 +1,20 @@
+php oop & MySQL
+
+Roles: Adminstrators, teachers, students
+
+Students: 
+ - Admins can create, "view", edit and delete students.
+ - View should show details and a list of all courses the student attends to. 
+
+Teachers: 
+ - Admins can create, "view", edit and delete teachers. 
+ - View should show details and a list of all course the teacher teaches. 
+
+Courses: 
+ - Admins can create new courses.
+ - Admins can create, update and Delete courses. 
+ - Modal view.
+ - "View" should show details including teacher at the course
+   and a list of all enrolled students at the course.
+ - You should at the "view course" page be able to add a teacher to a course,
+   and should be able to enrolle new students.
