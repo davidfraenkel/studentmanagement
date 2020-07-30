@@ -21,7 +21,7 @@ foreach($singleStudent as $course) {
             <p data-course>Course Startdate: $course[startDate]</p>
             <p data-course>ETCS: $course[ETCS]</p>";
     if($course["courseID"] != null && $course["grade"] == null) {
-        $sCourseDiv .= "<p data-grade>No grade yet</p>";
+        $sCourseDiv .= "<p data-grade>No grade yet</p><button class='gradeStudent btn-green btn'>Grade student</button>";
     } else {
         $sCourseDiv .= "<p data-grade>Grade: $course[grade]</p>";
     }

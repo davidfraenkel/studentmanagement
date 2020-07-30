@@ -51,7 +51,6 @@
 </ul>
 
 <div id="allStudentsContainer">
-  
 </div>
 
 <template class="studentTemplate">
@@ -83,11 +82,12 @@
     // Show students filtered after first letter
     document.querySelectorAll(".studentLetter").forEach(letter => {
         letter.addEventListener("click", () => {
+            dest.style.display = "grid";
             let studentName = letter.getAttribute("data-category");
             let allStudents = alphabeticalArrays[studentName];
             if(allStudents == undefined) 
                 dest.innerHTML = "No student's name begin with that letter";
-            else 
+            else
             dest.innerHTML = "";
             allStudents.forEach(student => {
                 let newStudent = new ShowStudents(student.studentID,student.firstName,student.lastName);
@@ -98,11 +98,11 @@
 
     
     function ShowStudents(studentID,firstname,lastname) {
-        this.studentID = studentID;
-        this.firstName = firstname;
-        this.lastName = lastname;
+        this.studentID = studentID; // Different from one user to another
+        this.firstName = firstname; // Different from one user to another
+        this.lastName = lastname; // Different from one user to another
 
-        this.showStudentsLetter = function() {
+        ShowStudents.prototype.showStudentsLetter = function() {
             let clone = studentTemplate.cloneNode(true).content;
             clone.querySelector("[data-name]").textContent = this.firstName + " " + this.lastName;
 
@@ -113,16 +113,26 @@
             dest.appendChild(clone);
         }
 
-        this.showSingleStudent = function() {
+        ShowStudents.prototype.showSingleStudent = function() {
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("allStudentsContainer").innerHTML = this.responseText;
-                    if(this.responseText && this.readyState == 4 && this.status == 200) {
-                        document.querySelector(".deleteStudent").addEventListener("click", () => {
-                            deleteStudent(studentID);
-                        });              
-                    }
+                    dest.innerHTML = this.responseText;
+                    dest.style.display = "block";
+                  
+                        document.querySelector(".deleteStudent").addEventListener("click", function(){deleteStudent(studentID)});
+
+                        document.querySelector(".gradeStudent").addEventListener("click", () => {
+                            xhttp = new XMLHttpRequest(); 
+                            xhttp.onreadystatechange = function() {
+                                if(this.readyState == 4 && this.status == 200) {
+                                    dest.innerHTML = this.responseText;
+                                }
+                            }
+                            xhttp.open("GET", "gradeStudent.php?id=" + this.studentID, true);
+                            xhttp.send();
+                        });
+                  
                 }
             }
             xhttp.open("GET", "viewStudent.php?id=" + this.studentID, true);
@@ -134,7 +144,7 @@
         console.log(studentID);
         let oButton = document.querySelector(".deleteStudent");
         let jConnection = await fetch("api/deleteStudent.php?=" + studentID , {
-            method: "POST"
+            method: "GET"
         });
 
         var jResponse = await jConnection.text();
