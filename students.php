@@ -17,8 +17,6 @@
         $alphabeticalArrays[$firstLetter][] = $student;
     }
 
-
-
 ?>
 
 <ul>
@@ -56,7 +54,7 @@
 <template class="studentTemplate">
 <div class="studentInformation">
         <div class="studentName">
-            <p data-name></p>
+            <p data-name class="startName"></p>
         </div>     
         <div class="adminOptions"> 
             <button class="viewButton btn-green btn">View</button>
@@ -120,24 +118,36 @@
                     dest.innerHTML = this.responseText;
                     dest.style.display = "block";
                   
+                        // AJAX call for delete student.
                         document.querySelector(".deleteStudent").addEventListener("click", function(){deleteStudent(studentID)});
 
-                        document.querySelector(".gradeStudent").addEventListener("click", () => {
-                            xhttp = new XMLHttpRequest(); 
-                            xhttp.onreadystatechange = function() {
-                                if(this.readyState == 4 && this.status == 200) {
-                                    dest.innerHTML = this.responseText;
-                                }
-                            }
-                            xhttp.open("GET", "gradeStudent.php?id=" + this.studentID, true);
-                            xhttp.send();
-                        });
-                  
+                        // AJAX call for grade student.
+                        // document.querySelector(".gradeStudent").addEventListener("click", () => {
+                        //     xhttp = new XMLHttpRequest(); 
+                        //     xhttp.onreadystatechange = function() {
+                        //         if(this.readyState == 4 && this.status == 200) {
+                        //             dest.innerHTML = this.responseText;
+                        //         }
+                        //     }
+                        //     xhttp.open("GET", "gradeStudent.php?sID=" + studentID, true);
+                        //     xhttp.send();
+                        // });
                 }
             }
             xhttp.open("GET", "viewStudent.php?id=" + this.studentID, true);
-            xhttp.send(); 
+            xhttp.send();
         }
+    }
+
+    async function gradeStudent(studentID, courseID) {
+        xhttp = new XMLHttpRequest(); 
+        xhttp.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200) {
+                    document.querySelector("[data-grade] span").innerHTML = this.responseText;
+                }
+            }
+        xhttp.open("GET", "gradeStudent.php?sID=" + studentID + "&cID=" + courseID, true);
+        xhttp.send();
     }
 
     async function deleteStudent(studentID) {

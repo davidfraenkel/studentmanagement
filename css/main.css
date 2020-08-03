@@ -122,13 +122,14 @@ ul li {
   padding: 1.5rem;
   display: flex;
   justify-content: space-between;
+  flex-basis: 33%;
 }
 
-[data-name],
-[data-id],
-[data-email],
-[data-courses],
-[data-cpr] {
+.courseInformation {
+  flex-basis: 33%;
+}
+
+.startName {
   font-size: 2rem;
   margin: 0;
 }

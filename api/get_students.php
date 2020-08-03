@@ -49,4 +49,21 @@ require_once("db.php");
      } else
         return false;
    }
+
+
+   function gradeStudent($sID, $cID, $grade) {
+      $db = new DB();
+      $con = $db->connect();
+
+      if($con) {
+         $stmt = $con->prepare("UPDATE courses_students SET grade = :grade WHERE FKstudents = :id AND FKcourses = :cID");
+         $stmt->bindParam(':grade', $grade);
+         $stmt->bindParam(':id', $sID);
+         $stmt->bindParam(':cID', $cID);
+         $stmt->execute();
+
+         $stmt = null;
+         $db->disconnect($con);
+      }
+   }
  }
